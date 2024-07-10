@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados WHOIS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #161b22;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+            margin: 20px;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            background-color: #6c757d;
+        }
+        .back-link:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resultados WHOIS</h1>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% else %}
+            <table>
+                <tr>
+                    <th>Campo</th>
+                    <th>Datos</th>
+                    <th>Valoración</th>
+                </tr>
+                <tr>
+                    <td>Nombre del Dominio</td>
+                    <td>{{ whois_data.WhoisRecord.domainName }}</td>
+                    <td>Amenaza Alta (4)</td>
+                </tr>
+                <tr>
+                    <td>Fecha de Creación</td>
+                    <td>{{ whois_data.WhoisRecord.createdDate }}</td>
+                    <td>Amenaza Intermedia (3)</td>
+                </tr>
+                <tr>
+                    <td>Fecha de Expiración</td>
+                    <td>{{ whois_data.WhoisRecord.expiresDate }}</td>
+                    <td>Amenaza Intermedia (3)</td>
+                </tr>
+                <tr>
+                    <td>Edad Estimada del Dominio (días)</td>
+                    <td>{{ whois_data.WhoisRecord.estimatedDomainAge }}</td>
+                    <td>Amenaza Media Baja (2)</td>
+                </tr>
+                <tr>
+                    <td>Correo de Contacto</td>
+                    <td>{{ whois_data.WhoisRecord.contactEmail }}</td>
+                    <td>Amenaza Alta (4)</td>
+                </tr>
+                <tr>
+                    <td>Registrador</td>
+                    <td>{{ whois_data.WhoisRecord.registrarName }}</td>
+                    <td>Amenaza Intermedia (3)</td>
+                </tr>
+                <tr>
+                    <td>Estado del Dominio</td>
+                    <td>{{ whois_data.WhoisRecord.status }}</td>
+                    <td>Amenaza Intermedia (3)</td>
+                </tr>
+                <tr>
+                    <td>Servidores de Nombre</td>
+                    <td>
+                        <ul>
+                        {% for ns in whois_data.WhoisRecord.nameServers.hostNames %}
+                            <li>{{ ns }}</li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                    <td>Amenaza Media Baja (2)</td>
+                </tr>
+            </table>
+            <a href="{{ url_for('download', file_path=file_path) }}">Descargar Excel</a>
+        {% endif %}
+        <a href="/" class="back-link">Volver</a>
+    </div>
+</body>
+</html>

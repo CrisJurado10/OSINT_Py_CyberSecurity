@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario De Activos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #58a6ff;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #58a6ff;
+        }
+        form {
+            background-color: #161b22;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #c9d1d9;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #30363d;
+            border-radius: 4px;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+        button {
+            background-color: #238636;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: #2ea043;
+        }
+        .results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Inventario de Activos</h1>
+    
+    <h2>Subdomain Finder</h2>
+    <form action="/subdominios" method="POST">
+        <label for="domain">Ingresa el Dominio:</label>
+        <input type="text" id="domain" name="domain" required>
+        <button type="submit">Buscar Subdominios </button>
+    </form>
+
+    <h2>Assetfinder</h2>
+    <form action="/assetfinder" method="POST">
+        <label for="domain">Ingresa el Dominio:</label>
+        <input type="text" id="domain" name="domain" required>
+        <button type="submit">Buscar con Assetfinder</button>
+    </form>
+
+    <h2>TheHarvester</h2>
+    <form action="/theharvester" method="POST">
+        <label for="domain">Ingresa el Dominio:</label>
+        <input type="text" id="domain" name="domain" required>
+        <button type="submit">Buscar con The Harvester</button>
+    </form>
+
+    <h2>WHOIS</h2>
+    <form action="/whois" method="POST">
+        <label for="domain">Ingresa el Dominio:</label>
+        <input type="text" id="domain" name="domain" required>
+        <button type="submit">Buscar WHOIS</button>
+    </form>
+</body>
+</html>

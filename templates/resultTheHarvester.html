@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados The Harvester</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultsTheHarvester.css') }}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            font-size: 2em;
+            color: #58a6ff;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #58a6ff;
+            margin-top: 20px;
+        }
+        p {
+            color: #c9d1d9;
+            font-size: 1.2em;
+        }
+        table {
+            width: 80%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+            background-color: #161b22;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #30363d;
+        }
+        th {
+            background-color: #1f6feb;
+            color: white;
+            font-size: 1.1em;
+        }
+        tr:nth-child(even) {
+            background-color: #161b22;
+        }
+        tr:nth-child(odd) {
+            background-color: #0d1117;
+        }
+        a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 1.2em;
+            background-color: #238636;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        a:hover {
+            background-color: #2ea043;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resultados The Harvester</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Activo</th>
+                    <th>Categoria</th>
+                    <th>Valoración</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for email in emails %}
+                    <tr>
+                        <td>{{ email }}</td>
+                        <td>Correo</td>
+                        <td>Nivel 4 - Amenaza Alta</td>
+                    </tr>
+                {% endfor %}
+                {% for ip in ips %}
+                    <tr>
+                        <td>{{ ip }}</td>
+                        <td>IP</td>
+                        <td>Nivel 3 - Amenaza Intermedia</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('download', file_path=file_path) }}">Descargar archivo Excel</a>
+    {% endif %}
+    <a href="/" class="back-link">Volver</a>
+</body>
+</html>
